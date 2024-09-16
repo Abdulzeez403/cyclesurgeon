@@ -2,78 +2,20 @@ import React from "react";
 import { SearchInput } from "../inputs/searchInput";
 import User from "@/app/assests/user";
 import Cart from "@/app/assests/cart";
-import { FlexCard } from "../cards/flexcard";
+import Image from "next/image";
+import logo from "../../assests/logo.jpeg";
 export const TopMenu = () => {
   return (
     <div className="mt-2">
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <User width={100} height={300} />
+          <div className="rounded-full">
+            <Image src={logo} alt="logo" width={60} height={60} />
+          </div>
         </div>
         <div className="navbar-center">
           <SearchInput />
         </div>
-
-        <div className="navbar-end">
-          <div className="flex justify-between items-center m-0 ">
-            <FlexCard
-              className="mx-6"
-              title="Contact"
-              subTitle="09494858585"
-              icon={Cart}
-            />
-
-            <FlexCard
-              className="custom-card"
-              title="Contact"
-              subTitle="09494858585"
-              icon={Cart}
-            />
-          </div>
-        </div>
-      </div>
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost btn-circle"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h7"
-                />
-              </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-            >
-              <li>
-                <a>Homepage</a>
-              </li>
-              <li>
-                <a>Portfolio</a>
-              </li>
-              <li>
-                <a>About</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        {/* <div className="navbar-center">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
-        </div> */}
         <div className="navbar-end">
           <button className="btn btn-ghost btn-circle">
             <User />
