@@ -6,7 +6,7 @@ const User = (props: React.SVGProps<SVGSVGElement>) => (
     height={24}
     fill="none"
     aria-hidden="true"
-    className="w-6 h-6 text-gray-800 dark:text-white"
+    className="w-6 h-6 text-white dark:text-white"
     {...props}
   >
     <path
