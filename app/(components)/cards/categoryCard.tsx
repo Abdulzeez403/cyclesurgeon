@@ -10,13 +10,13 @@ export const CategoryCard = ({ title, img }: IProp) => {
   return (
     <div className="flex flex-col items-center">
       {/* Responsive image container */}
-      <div className="border-2 border-slate-400 rounded-full overflow-hidden w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
+      <div className="border-4 px-2 border-slate-400 rounded-full overflow-hidden w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
         <Image
           src={img}
           alt="categoryImage"
           layout="responsive"
-          width={100}
-          height={100}
+          width={60}
+          height={60}
           className="rounded-full object-cover"
         />
       </div>

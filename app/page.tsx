@@ -1,4 +1,4 @@
-import { HomePage } from "./(modules)/home/detial";
+import { HomePage } from "./home/detial";
 
 export default function Home() {
   return (

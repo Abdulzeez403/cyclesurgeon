@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 interface ProductCardProps {
-  href: string;
   imgSrc: string;
   alt: string;
   title: string;
@@ -15,7 +14,6 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  href,
   imgSrc,
   alt,
   title,
@@ -27,10 +25,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   badgeText,
 }) => {
   return (
-    <a
-      href={href}
-      className="block p-4 border rounded-lg hover:shadow-lg transition-shadow duration-200 ease-in-out"
-    >
+    <div className="block p-4 border rounded-lg hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer">
       <div className="relative w-full h-52 mb-4">
         <Image
           src={imgSrc}
@@ -65,7 +60,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <span className="ml-2">({reviews} reviews)</span>
         </div>
       </div>
-    </a>
+    </div>
   );
 };
 

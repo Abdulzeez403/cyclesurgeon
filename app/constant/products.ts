@@ -12,6 +12,16 @@ export interface ProductCardProps {
   badgeText?: string;
 }
 
+// constant/products.ts
+export interface Product {
+  id: string;
+  name: string;
+  price: number;
+  description: string;
+  images: string[];
+  stock: boolean;
+}
+
 export const productsData: ProductCardProps[] = [
   {
     href: "/",
@@ -69,4 +79,36 @@ export const productsData: ProductCardProps[] = [
     rating: 5,
     reviews: 15,
   },
+
+  {
+    href: "/",
+    imgSrc: "/category/helmet.jpg",
+    alt: "helmet.jpg",
+    title: "Hemlet",
+    price: "5,000",
+    oldPrice: "6,500",
+    discount: "1000",
+    rating: 5,
+    reviews: 15,
+  },
+];
+
+// Example Product List (or a single product if it's not an array)
+export const AProduct: Product[] = [
+  {
+    id: "1",
+    name: "Product Name",
+    price: 99.99,
+    description:
+      "This solution ensures that the image list is vertical on larger screens, horizontal and scrollable on mobile devices, and that users can click thumbnails to change the main image. Let me know if you need further adjustments!",
+    images: [
+      "/air_pump.jpg",
+      "/eletrctric_bike.jpg",
+      "/Polyester_Bike.jpg",
+      "/Polyester_Bike.jpg",
+    ],
+
+    stock: true,
+  },
+  // Add more products if needed
 ];

@@ -16,4 +16,13 @@ export const categoryImage = [
     img: "/category/helmet.jpg",
     name: "Hemlet",
   },
+  {
+    img: "/air_pump.jpg",
+    name: "Air Pump",
+  },
+
+  {
+    img: "/bicycle_chain_cable_key_lock.jpg",
+    name: "Cable Key",
+  },
 ];
