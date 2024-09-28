@@ -1,12 +1,11 @@
 import React from "react";
-import shoesImage from "../../../public/category/helmet.jpg";
+import shoesImage from "../../../public/bicycle-promotion.png";
 import Image from "next/image";
 
 const PromotionalBanner = () => {
   return (
     <div className="relative mx-0 md:mx-40 lg:mx-40 py-6">
       <div className="container mx-auto p-4 flex flex-col md:flex-row items-center justify-between bg-gray-100 rounded-lg shadow-lg">
-        {/* Text Section */}
         <div className="flex-1 p-4 text-center md:text-left">
           <p className="text-sm text-gray-700 font-medium">
             Perfect Quality Brand Sport helmet
@@ -22,14 +21,13 @@ const PromotionalBanner = () => {
           </a>
         </div>
 
-        {/* Image Section */}
-        <div className="flex-1 p-4">
+        <div className=" p-4 w-50 h-30">
           <Image
             src={shoesImage}
             alt="Sport Shoes"
             className="w-full h-auto rounded-lg"
-            width={400}
-            height={400}
+            width={300}
+            height={300}
           />
         </div>
       </div>

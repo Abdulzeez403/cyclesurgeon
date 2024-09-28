@@ -1,26 +1,13 @@
 import React from "react";
 import Image from "next/image";
-
-interface ProductCardProps {
-  imgSrc: string;
-  alt: string;
-  title: string;
-  price: string;
-  oldPrice: string;
-  discount: string;
-  // rating: number;
-  reviews?: number;
-  badgeText?: string;
-}
+import { ProductCardProps } from "@/app/constant/products";
 
 const ProductCard: React.FC<ProductCardProps> = ({
-  imgSrc,
-  alt,
-  title,
+  images,
+  name,
   price,
   oldPrice,
   discount,
-  // rating,
   reviews,
   badgeText,
 }) => {
@@ -28,8 +15,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
     <div className="block p-4 border rounded-lg hover:shadow-lg transition-shadow duration-200 ease-in-out cursor-pointer">
       <div className="relative w-full h-52 mb-4">
         <Image
-          src={imgSrc}
-          alt={alt}
+          src={images[0]}
+          alt={images[0]}
           layout="fill"
           objectFit="cover"
           className="rounded-lg"
@@ -41,7 +28,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         )}
       </div>
       <div className="info">
-        <h3 className="text-lg font-semibold mb-2 line-clamp-2">{title}</h3>
+        <h3 className="text-lg font-semibold mb-2 line-clamp-2">{name}</h3>
         <div className="text-xl font-bold text-gray-900 mb-2">{price}</div>
         <div className="flex items-center space-x-2 mb-2">
           <div className="text-gray-500 line-through">{oldPrice}</div>

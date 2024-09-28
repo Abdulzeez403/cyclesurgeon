@@ -1,6 +1,6 @@
 "use client";
 
-import { AProduct, Product } from "@/app/constant/products";
+import { AProduct, ProductCardProps } from "@/app/constant/products";
 import React, { useState } from "react";
 import Image from "next/image";
 import Slider from "react-slick";
@@ -17,7 +17,9 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
   const pathname = usePathname();
   const id = pathname.split("/").pop(); // Extracting the product ID from the URL
 
-  const product: Product | undefined = AProduct.find((prod) => prod.id === id);
+  const product: ProductCardProps | undefined = AProduct.find(
+    (prod) => prod.id === id
+  );
 
   // State to track selected image
   const [selectedImage, setSelectedImage] = useState<string>(
@@ -102,7 +104,7 @@ const ProductDetailPage: React.FC<ProductDetailPageProps> = () => {
             {product.name}
           </h1>
           <p className="text-lg lg:text-xl text-gray-700 font-semibold mb-4">
-            ${product.price.toFixed(2)}
+            ${product.price}
           </p>
 
           <p className="text-gray-600 mb-6">{product.description}</p>

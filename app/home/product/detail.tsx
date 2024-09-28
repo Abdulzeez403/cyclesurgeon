@@ -98,9 +98,9 @@ const HomeProduct = () => {
           <div key={index} className="px-2">
             <Link href={`/product/${index}`}>
               <ProductCard
-                imgSrc={product.imgSrc}
-                alt={product.alt}
-                title={product.title}
+                id={product.id}
+                images={product.images}
+                name={product.name}
                 price={product.price}
                 oldPrice={product.oldPrice}
                 discount={product.discount}

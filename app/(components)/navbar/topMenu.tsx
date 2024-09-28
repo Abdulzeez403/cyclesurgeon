@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SearchInput } from "../inputs/searchInput";
 import User from "@/app/assests/user";
 import Cart from "@/app/assests/cart";
@@ -7,8 +7,46 @@ import Image from "next/image";
 import logo from "../../assests/logo.jpeg";
 import Drawer from "../modals/drawer";
 import Link from "next/link";
+import EmptyCartSVG from "@/app/assests/empytcart";
+import CartItemComponent from "../cart/microCart";
+import Modal from "../modals/modal";
+import { AuthPage } from "@/app/auth/detail";
+import { supabase } from "@/lib/supabaseClient";
+import { useRouter } from "next/navigation";
+
+interface User {
+  email: string;
+  password: string;
+}
 export const TopMenu = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [cartItems, setCartItems] = useState<any[]>([]);
+
+  const [user, setUser] = useState<User | null>(null);
+  const router = useRouter();
+  useEffect(() => {
+    // Get session using the updated method
+    const getSession = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+
+      if (session?.user) {
+        setUser(session?.user as any);
+      } else {
+        router.push("/login");
+      }
+
+      if (error) {
+        console.error("Error fetching session:", error.message);
+      }
+    };
+
+    getSession();
+  }, [router]);
+
   return (
     <div className="mt-2">
       <div className="overflow-hidden whitespace-nowrap bg-slate-200">
@@ -28,11 +66,20 @@ export const TopMenu = () => {
           <SearchInput />
         </div>
         <div className="navbar-end">
-          <Link href="/dashboard">
-            <button className="btn btn-ghost btn-circle">
+          {user ? (
+            <Link href="/dashboard">
+              <button className="btn btn-ghost btn-circle">
+                <User />
+              </button>
+            </Link>
+          ) : (
+            <button
+              className="btn btn-ghost btn-circle"
+              onClick={() => setIsOpen(true)}
+            >
               <User />
             </button>
-          </Link>
+          )}
 
           <button
             className="btn btn-ghost btn-circle"
@@ -47,8 +94,26 @@ export const TopMenu = () => {
       </div>
       <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
         <h2 className="text-lg font-bold mb-4">Cart Drawer</h2>
-        <p>This is a sample drawer content.</p>
+        {cartItems.length > 0 ? (
+          <div>
+            {cartItems.map((item) => (
+              <CartItemComponent
+                key={item.id}
+                item={item}
+                setCartItems={setCartItems}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center h-64">
+            <EmptyCartSVG />
+            <p className="text-gray-500 mt-4">Your cart is empty.</p>
+          </div>
+        )}
       </Drawer>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+        <AuthPage />
+      </Modal>
     </div>
   );
 };

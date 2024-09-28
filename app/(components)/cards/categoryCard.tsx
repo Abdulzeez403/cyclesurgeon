@@ -9,14 +9,14 @@ interface IProp {
 export const CategoryCard = ({ title, img }: IProp) => {
   return (
     <div className="flex flex-col items-center">
-      {/* Responsive image container */}
-      <div className="border-4 px-2 border-slate-400 rounded-full overflow-hidden w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
+      <div className="border-4 px-4 border-slate-200  hover:border-slate-600 rounded-full overflow-hidden w-[100px] h-[100px] md:w-[135px] md:h-[135px] lg:w-[135px] lg:h-[135px]">
         <Image
           src={img}
           alt="categoryImage"
           layout="responsive"
-          width={60}
-          height={60}
+          objectFit="cover"
+          width={40}
+          height={40}
           className="rounded-full object-cover"
         />
       </div>

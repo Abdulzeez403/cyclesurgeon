@@ -43,7 +43,7 @@ export const HomeCategory: React.FC = () => {
 
   return (
     <div className="">
-      <div className="mx-4 md:mx-20 lg:mx-40">
+      <div className=" md:mx-20 lg:mx-40">
         <div className="container mx-auto px-4 py-8">
           <h4 className="font-bold p-4 pb-0 text-lg text-center">
             Shop by Categories
@@ -61,11 +61,10 @@ export const HomeCategory: React.FC = () => {
               </button>
             )}
 
-            {/* Scrollable items */}
             <div
               ref={scrollRef}
               onScroll={handleScrollPosition}
-              className="flex gap-4 p-4 overflow-x-auto scroll-smooth"
+              className="flex gap-6 p-4 overflow-x-auto hidden-scrollbar scroll-smooth"
             >
               {categoryImage.map((c, index) => (
                 <Link href={`/product`} key={index}>
@@ -74,7 +73,6 @@ export const HomeCategory: React.FC = () => {
               ))}
             </div>
 
-            {/* Right arrow (shows only if can scroll right) */}
             {canScrollRight && (
               <button
                 className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-500 text-white p-2 rounded-full z-10"

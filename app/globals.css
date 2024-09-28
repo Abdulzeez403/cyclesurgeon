@@ -14,3 +14,11 @@ body {
     text-wrap: balance;
   }
 }
+.hidden-scrollbar {
+  overflow-x: auto;
+  scrollbar-width: none; /* For Firefox */
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
