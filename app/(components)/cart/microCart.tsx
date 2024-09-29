@@ -1,13 +1,13 @@
 import React from "react";
 
-type CartItem = {
+export type CartItem = {
   id: number;
   name: string;
   price: number;
   quantity: number;
 };
 
-interface CartItemComponentProps {
+export interface CartItemComponentProps {
   item: CartItem;
   setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
 }

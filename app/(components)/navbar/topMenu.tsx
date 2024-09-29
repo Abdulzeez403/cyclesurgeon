@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { SearchInput } from "../inputs/searchInput";
 import User from "@/app/assests/user";
 import Cart from "@/app/assests/cart";
@@ -8,44 +8,43 @@ import logo from "../../assests/logo.jpeg";
 import Drawer from "../modals/drawer";
 import Link from "next/link";
 import EmptyCartSVG from "@/app/assests/empytcart";
-import CartItemComponent from "../cart/microCart";
+import CartItemComponent, { CartItem } from "../cart/microCart";
 import Modal from "../modals/modal";
 import { AuthPage } from "@/app/auth/detail";
-import { supabase } from "@/lib/supabaseClient";
-import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/context";
 
 interface User {
   email: string;
-  password: string;
+  password?: string;
 }
 export const TopMenu = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const { user } = useAuth();
 
-  const [user, setUser] = useState<User | null>(null);
-  const router = useRouter();
-  useEffect(() => {
-    // Get session using the updated method
-    const getSession = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
+  // const router = useRouter();
+  // useEffect(() => {
+  //   // Get session using the updated method
+  //   const getSession = async () => {
+  //     const {
+  //       data: { session },
+  //       error,
+  //     } = await supabase.auth.getSession();
 
-      if (session?.user) {
-        setUser(session?.user as any);
-      } else {
-        router.push("/login");
-      }
+  //     if (session?.user) {
+  //       setUser(session?.user );
+  //     } else {
+  //       router.push("/login");
+  //     }
 
-      if (error) {
-        console.error("Error fetching session:", error.message);
-      }
-    };
+  //     if (error) {
+  //       console.error("Error fetching session:", error.message);
+  //     }
+  //   };
 
-    getSession();
-  }, [router]);
+  //   getSession();
+  // }, [router]);
 
   return (
     <div className="mt-2">
