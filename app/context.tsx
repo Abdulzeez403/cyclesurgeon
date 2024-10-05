@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase } from "@/lib/supabaseClient"; // Update to your supabase client path
+import LoadingSpinner from "./assests/loader";
 
 // Define types for context
 interface AuthContextType {
@@ -76,7 +77,13 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider value={{ user, session, loading, signIn, signOut }}>
-      {!loading ? children : <p>Loading...</p>}
+      {!loading ? (
+        children
+      ) : (
+        <div className="flex justify-center items-center h-screen">
+          <LoadingSpinner />
+        </div>
+      )}
     </AuthContext.Provider>
   );
 };

@@ -44,7 +44,7 @@ export const HomeCategory: React.FC = () => {
   return (
     <div className="">
       <div className=" md:mx-20 lg:mx-40">
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto px-4 py-4">
           <h4 className="font-bold p-4 pb-0 text-lg text-center">
             Shop by Categories
           </h4>

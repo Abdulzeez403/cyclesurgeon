@@ -57,7 +57,7 @@ const LoginForm = ({ handleToggle }: SignUpProps) => {
             <Field
               name="email"
               type="email"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-white border-slate-500 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <ErrorMessage
               name="email"
@@ -75,7 +75,7 @@ const LoginForm = ({ handleToggle }: SignUpProps) => {
             <Field
               name="password"
               type="password"
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-white border-slate-500 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />
             <ErrorMessage
               name="password"
@@ -89,14 +89,19 @@ const LoginForm = ({ handleToggle }: SignUpProps) => {
           <div className="flex items-center justify-between">
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             >
               Login
             </button>
           </div>
           <div className="pt-4">
             If you already have an Account{" "}
-            <button onClick={handleToggle}>SignIn</button>
+            <button
+              onClick={handleToggle}
+              className="text-blue-400 text-underline"
+            >
+              SignIn
+            </button>
           </div>
         </Form>
       </Formik>

@@ -89,7 +89,7 @@ const HomeNewArrivalProduct = () => {
   };
 
   return (
-    <div className="relative mx-0 md:mx-40 lg:mx-40 py-6">
+    <div className="relative mx-0 md:mx-40 lg:mx-40 py-4">
       <h4 className="font-bold text-lg py-4 pl-2">New Arrival</h4>
       <Slider {...settings}>
         {productsData.map((product: ProductCardProps, index: number) => (
