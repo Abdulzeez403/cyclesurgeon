@@ -5,7 +5,8 @@
     "react/react-in-jsx-scope": "off", // Disable if you don't want to import React in every file
     "no-console": "off", // Warn for console.log statements instead of throwing an error
     "react/prop-types": "off", // Disable prop-types validation if using TypeScript
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    " @typescript-eslint/no-unused-vars": "off"
   },
   "settings": {
     "react": {
