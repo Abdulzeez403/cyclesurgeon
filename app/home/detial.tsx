@@ -10,7 +10,6 @@ import { supabase } from "@/lib/supabaseClient";
 export const HomePage = () => {
   const [products, setProducts] = useState<ProductCardProps[] | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   // Fetch products from Supabase
   useEffect(() => {
     const fetchProducts = async () => {
@@ -21,7 +20,6 @@ export const HomePage = () => {
         setProducts(data as ProductCardProps[]);
       } catch (error) {
         if (error instanceof Error) {
-          setError(error.message);
           console.error("Error fetching products:", error.message);
         }
       } finally {
