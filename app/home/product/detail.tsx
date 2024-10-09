@@ -2,8 +2,9 @@
 import React from "react";
 import Slider, { CustomArrowProps } from "react-slick";
 import ProductCard from "@/app/(components)/cards/productCard";
-import { ProductCardProps, productsData } from "@/app/constant/products";
+import { ProductCardProps } from "@/app/constant/products";
 import Link from "next/link";
+import ProductCardSkeleton from "@/app/(components)/skeleton/product";
 
 const NextArrow: React.FC<CustomArrowProps> = ({ onClick }) => {
   return (
@@ -51,7 +52,12 @@ const PrevArrow: React.FC<CustomArrowProps> = ({ onClick }) => {
   );
 };
 
-const HomeProduct = () => {
+interface IProduct {
+  products: ProductCardProps[];
+  loading: boolean;
+}
+
+const HomeProduct = ({ products, loading }: IProduct) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -89,26 +95,32 @@ const HomeProduct = () => {
   };
 
   return (
-    <div className="relative mx-0 md:mx-40 lg:mx-40 py-6">
-      <h4 className="font-bold text-lg  py-4 pl-2">
-        Top Product | <span className="text-yellow-400">Best Selling</span>
-      </h4>
+    <div className="relative mx-0 md:mx-40 lg:mx-40 py-4">
+      <h4 className="font-bold text-lg py-4 pl-2">New Arrival</h4>
       <Slider {...settings}>
-        {productsData.map((product: ProductCardProps, index: number) => (
-          <div key={index} className="px-2">
-            <Link href={`/product/${index}`}>
-              <ProductCard
-                id={product.id}
-                images={product.images}
-                name={product.name}
-                price={product.price}
-                oldPrice={product.oldPrice}
-                discount={product.discount}
-                reviews={product.reviews}
-              />
-            </Link>
-          </div>
-        ))}
+        {loading
+          ? // Show 5 skeleton cards while loading
+            [...Array(5)].map((_, index) => (
+              <div key={index} className="px-2">
+                <ProductCardSkeleton />
+              </div>
+            ))
+          : // Show actual products when loading is complete
+            products?.map((product: ProductCardProps, index: number) => (
+              <div key={index} className="px-2">
+                <Link href={`product/${product.id}`}>
+                  <ProductCard
+                    id={product.id}
+                    images={product.images}
+                    name={product.name}
+                    price={product.price}
+                    oldPrice={product.oldPrice}
+                    discount={product.discount}
+                    reviews={product.reviews}
+                  />
+                </Link>
+              </div>
+            ))}
       </Slider>
     </div>
   );

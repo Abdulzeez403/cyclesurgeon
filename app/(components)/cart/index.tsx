@@ -1,18 +1,19 @@
+"use client";
 import React from "react";
-
+import Image from "next/image";
 type CartItemProps = {
-  id: string;
+  id: number;
   name: string;
   image: string;
   price: number;
   oldPrice: number;
   discount: number;
-  seller: string;
+  seller?: string;
   quantity: number;
-  isFewUnitsLeft: boolean;
-  onRemove: (id: string) => void;
-  onIncreaseQuantity: (id: string) => void;
-  onDecreaseQuantity: (id: string) => void;
+  isFewUnitsLeft?: boolean;
+  onRemove: (id: number) => void;
+  onIncreaseQuantity: (id: number) => void;
+  onDecreaseQuantity: (id: number) => void;
 };
 
 const CartItem: React.FC<CartItemProps> = ({
@@ -35,12 +36,13 @@ const CartItem: React.FC<CartItemProps> = ({
         <div className="flex p-4">
           <a className="flex-1 flex" href={`/product/${id}`}>
             <div className="flex-shrink-0">
-              <img
+              <Image
                 src={image}
                 alt={name}
                 width={72}
                 height={72}
                 className="object-cover rounded"
+                priority
               />
             </div>
             <div className="ml-4 flex-1">
@@ -53,13 +55,9 @@ const CartItem: React.FC<CartItemProps> = ({
               )}
             </div>
             <div className="ml-4 text-right">
-              <div className="text-lg font-bold">
-                ₦ {price.toLocaleString()}
-              </div>
+              <div className="text-lg font-bold">₦ {price}</div>
               <div className="flex justify-end items-center">
-                <div className="line-through text-gray-500">
-                  ₦ {oldPrice.toLocaleString()}
-                </div>
+                <div className="line-through text-gray-500">₦{oldPrice}</div>
                 <span className="ml-2 text-red-600 font-semibold">
                   {discount}%
                 </span>
@@ -73,9 +71,6 @@ const CartItem: React.FC<CartItemProps> = ({
             className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
             onClick={() => onRemove(id)}
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5 inline-block mr-1">
-              <use href="#delete"></use>
-            </svg>
             Remove
           </button>
           <div className="flex items-center">
@@ -85,9 +80,7 @@ const CartItem: React.FC<CartItemProps> = ({
               aria-label="decrease cart quantity"
               onClick={() => onDecreaseQuantity(id)}
             >
-              <svg viewBox="0 0 24 24" className="h-5 w-5">
-                <use href="#remove"></use>
-              </svg>
+              -
             </button>
             <span className="mx-2 text-lg">{quantity}</span>
             <button
@@ -97,9 +90,7 @@ const CartItem: React.FC<CartItemProps> = ({
               onClick={() => onIncreaseQuantity(id)}
               disabled={quantity === 10}
             >
-              <svg viewBox="0 0 24 24" className="h-5 w-5">
-                <use href="#add"></use>
-              </svg>
+              +
             </button>
           </div>
         </div>

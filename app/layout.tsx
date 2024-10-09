@@ -1,9 +1,12 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
+"use client";
 import localFont from "next/font/local";
 import "./globals.css";
 import { HomeLayout } from "../app/homelayout";
 import { Footer } from "./home/footer";
 import { AuthProvider } from "@/app/context";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,11 +19,11 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Cycle Surgeon",
-  description:
-    "Dealing in selling and buying in all bicyle parts as well as reparing them",
-};
+// export const metadata: Metadata = {
+//   title: "Cycle Surgeon",
+//   description:
+//     "Dealing in selling and buying in all bicyle parts as well as reparing them",
+// };
 
 export default function RootLayout({
   children,
@@ -32,11 +35,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AuthProvider>
-          <HomeLayout />
-          {children}
-          <Footer />
-        </AuthProvider>
+        <Provider store={store}>
+          <AuthProvider>
+            <HomeLayout />
+            {children}
+            <Footer />
+          </AuthProvider>
+        </Provider>
       </body>
     </html>
   );

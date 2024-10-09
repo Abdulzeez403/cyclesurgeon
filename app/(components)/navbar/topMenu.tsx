@@ -8,10 +8,12 @@ import logo from "../../assests/logo.jpeg";
 import Drawer from "../modals/drawer";
 import Link from "next/link";
 import EmptyCartSVG from "@/app/assests/empytcart";
-import CartItemComponent, { CartItem } from "../cart/microCart";
+import CartItemComponent from "../cart/microCart";
 import Modal from "../modals/modal";
 import { AuthPage } from "@/app/auth/detail";
 import { useAuth } from "@/app/context";
+import { useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
 
 interface User {
   email: string;
@@ -20,31 +22,9 @@ interface User {
 export const TopMenu = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const { user } = useAuth();
 
-  // const router = useRouter();
-  // useEffect(() => {
-  //   // Get session using the updated method
-  //   const getSession = async () => {
-  //     const {
-  //       data: { session },
-  //       error,
-  //     } = await supabase.auth.getSession();
-
-  //     if (session?.user) {
-  //       setUser(session?.user );
-  //     } else {
-  //       router.push("/login");
-  //     }
-
-  //     if (error) {
-  //       console.error("Error fetching session:", error.message);
-  //     }
-  //   };
-
-  //   getSession();
-  // }, [router]);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   return (
     <div className="mt-2">
@@ -86,22 +66,29 @@ export const TopMenu = () => {
           >
             <div className="indicator">
               <Cart />
-              <span className="badge badge-xs badge-primary indicator-item"></span>
+              <span className="badge badge-xs badge-primary indicator-item">
+                {cartItems?.length}
+              </span>
             </div>
           </button>
         </div>
       </div>
-      <Drawer isOpen={isDrawerOpen} onClose={() => setIsDrawerOpen(false)}>
+      <Drawer
+        width="w-96"
+        isOpen={isDrawerOpen}
+        onClose={() => setIsDrawerOpen(false)}
+      >
         <h2 className="text-lg font-bold mb-4">Cart Drawer</h2>
         {cartItems.length > 0 ? (
           <div>
             {cartItems.map((item) => (
-              <CartItemComponent
-                key={item.id}
-                item={item}
-                setCartItems={setCartItems}
-              />
+              <CartItemComponent key={item.id} item={item} />
             ))}
+            <Link href="/cart">
+              <button className="bg-blue-400 w-full rounded-lg py-3 text-white font-bold">
+                Proceed
+              </button>
+            </Link>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-64">
@@ -110,6 +97,7 @@ export const TopMenu = () => {
           </div>
         )}
       </Drawer>
+
       <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <AuthPage />
       </Modal>
